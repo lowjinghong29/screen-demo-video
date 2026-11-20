@@ -3,9 +3,10 @@
 Cursorful is a screen recorder that adds zooms which follow the cursor while you record, and then
 opens an editor. This skill uses its free Chrome extension for web apps.
 
-Everything in the first table was read from Cursorful's own pages and from the extension's
-manifest (version 3.3.1) on 20 November 2026. The last section lists what has not been proven by
-running it. When the screen disagrees with this file, believe the screen.
+The first table was read from Cursorful's own pages and from the extension's manifest (version
+3.3.1) on 20 November 2026. The flow further down was driven for real that day, up to the export
+panel. The last section lists what is still unproven. When the screen disagrees with this file,
+believe the screen.
 
 ## Facts
 
@@ -35,30 +36,62 @@ running it. When the screen disagrees with this file, believe the screen.
 - If the user cannot or will not use it, record with `scripts/record.py` instead. That route is
   free and open source, and `cut.py` adds the zooms.
 
-## The flow
+## The flow, as driven with desktop.py on 20 November 2026
 
-1. The user installs the extension from the official listing and pins its icon.
-2. Start a recording from the toolbar icon. Chrome shows its own "choose what to share" picker:
-   pick the entire screen that holds the browser.
-3. Chrome then shows a small "is sharing your screen" bar. Click *Hide*, or it sits in the picture.
-4. Drive the app with `desktop.py`. Real mouse input is required: the extension draws its zooms
-   from real clicks, and the recording shows the real cursor.
-5. Plan the zooms with click pairs. Example: to zoom on an *Approve* button, click the row first
-   and the button within three seconds. Single clicks spaced out for pacing get no zoom.
-6. Stop from Cursorful's control. The editor opens.
-7. In the editor: delete a zoom that lands on nothing, hide the browser frame, keep 16:9, export
-   MP4. Leave the share link alone.
-8. Take the newest `.mp4` from Downloads into the project's `rec/` folder and continue with
-   `review.py beats` and `cut.py`. Do not add `target` or `zoom` to the shots: a 1080p export has
-   no spare pixels, so a second zoom would only blur it.
+A two-beat test on a local page was recorded and opened in the editor. Both click pairs produced a
+zoom segment on the timeline, so real input from `desktop.py` triggers Cursorful's auto-zoom.
+
+1. The user installs the extension from the official listing and pins its icon. The icon is a
+   green square with a white pointer; its tooltip reads *Cursorful - Screen Recorder with Auto Zoom*.
+2. Click the icon. There is no popup: a pinned tab opens at `record.html`, titled *Cursorful -
+   Start recording*, with the heading *Record your browser in three simple steps*.
+3. **01 Share this screen** has three cards: screen, microphone, camera.
+   - The microphone is on by default and shows a live waveform. Open the card's menu and choose
+     *Disable microphone*. The camera card greys out with it.
+   - Click *Select screen*. Chrome shows *Share your entire screen*, with one *Entire screen*
+     thumbnail, an *Also share system audio* switch (off), and *Share* / *Cancel*. *Share* is
+     disabled until the thumbnail is clicked.
+4. **02 Hide screen sharing bar.** Chrome puts a bar at the bottom of the screen: "Cursorful -
+   Screen Recorder with Auto Zoom is sharing your screen", with *Stop sharing* and *Hide*. Click
+   *Hide*, or it is in the picture.
+5. **03 Start recording** is below the fold. Its text: "You will be taken to your previous tab and
+   recording will start immediately. Stop the recording from this pinned tab or by pressing
+   Cursorful's button in the extensions toolbar."
+6. Drive the app with `desktop.py`. Plan the zooms with click pairs. Example: to zoom on an
+   *Approve* button, click the row first and the button within three seconds.
+7. Click the toolbar icon again to stop. The editor opens in a tab titled *Editor | Cursorful*.
+   The preview shows the app inside a clean window frame on a background image; the real tab
+   strip and any browser banner are not shown.
+8. *Export video* (top right) opens a panel: *Local*, *GIF*, *Link*; *Hide Cursorful icon*;
+   resolution (1080p); a quality slider.
+9. **On the free plan the panel has a checkbox:** "I confirm that this video is for non-commercial
+   use. I understand that commercial or corporate use without a Pro license is unlawful…" This is
+   a legal declaration. An agent must never tick it. The user ticks it if it is true, or activates
+   Pro.
+10. Move the exported `.mp4` into the project's `rec/` folder and continue with `review.py beats`
+    and `cut.py`. Do not add `target` or `zoom` to the shots: a 1080p export has no spare pixels,
+    so a second zoom would only blur it.
+
+What to know while driving:
+
+- Chrome's toolbar and the share dialog are **not** in the Snapshot tree. Find them on a frame.
+  The pages inside the tab (start page, editor) are in the tree with `"use_dom": true`.
+- Everything is recorded from the moment *Start recording* is clicked, including the time you
+  spend looking things up. A two-beat test came out 1 min 40 s long because of that. Collect
+  coordinates first, and pause with `Ctrl+Shift+9` when you must look.
+- The start page suggests setting a keyboard shortcut for *Activate the extension* under
+  Extensions > Keyboard shortcuts. If the user sets one, starting and stopping no longer depend on
+  finding the icon.
+- A Snapshot taken right after a tab closes can still list the old tab's buttons. When a Snapshot
+  contradicts what you expect, check a frame.
+- Each recording stays in Cursorful's local project list (*Load a recording*) until it is deleted there.
 
 ## Not yet proven by running it
 
-Treat these as likely, and check them on screen the first time:
+- Where the exported file is saved. The site says "saved directly to your computer"; look in
+  Downloads first.
+- The export panel with a Pro licence active (presumably without the checkbox).
+- The pause shortcut during a take.
+- How a native file picker looks inside the cropped recording.
 
-- the exact names of the buttons in Cursorful's popup, recording control and editor;
-- that the export lands in the Downloads folder (the site says "saved directly to your computer");
-- how a native file picker looks inside the cropped recording.
-
-If any step cannot be driven after two tries, ask the user to do that one click. Starting,
-stopping and exporting take them under a minute in total.
+If any step cannot be driven after two tries, ask the user to do that one click.

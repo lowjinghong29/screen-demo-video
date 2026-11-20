@@ -78,6 +78,11 @@ plain `run` for looking and waiting.
    `python scripts/record.py frame rec/now.png` then `python scripts/review.py grid rec/now.png 0`.
 3. Act, then confirm with `WaitFor` on something that exists only after success.
 
+The Snapshot tree does not contain everything. A browser's own toolbar (extension icons, the tab
+strip) and browser dialogs such as the screen-share picker are missing from it. For those, grab a
+frame and read the pixel off the grid. A Snapshot taken just after a tab or window closes can also
+still list the old controls: when it contradicts what you expect, look at a frame.
+
 Speed: each run pays a few seconds to start the server, so put a whole scene in one run. A full
 Snapshot of a large web app can take 10 to 40 seconds, so take one per run and pass `region` when
 you know where the target is.

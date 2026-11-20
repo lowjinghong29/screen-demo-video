@@ -70,8 +70,9 @@ def stop(_):
 def frame(a):
     out = Path(a.path).resolve()
     out.parent.mkdir(parents=True, exist_ok=True)
+    # rgb24 drops the alpha channel: with it, the pointer's bounding box shows as a white square
     r = subprocess.run(grab(a.screen, 1) + ["-frames:v", "1", "-update", "1",
-                                            "-vf", "hwdownload,format=bgra", "-y", str(out)],
+                                            "-vf", "hwdownload,format=bgra,format=rgb24", "-y", str(out)],
                        capture_output=True, text=True)
     if r.returncode != 0:
         sys.exit(r.stderr[-1500:])

@@ -99,29 +99,45 @@ the free plan.
 
 ## 4A. Record with Cursorful
 
-Full notes, sources and what is not yet proven: `references/cursorful.md`.
+This flow was driven for real with `desktop.py` on 20 November 2026 (extension 3.3.1), up to the
+export panel. Labels can change between versions, so read the screen. Full notes, sources and
+what is still unproven: `references/cursorful.md`.
 
 1. **Install, by the user.** If `setup_check.py` does not find it, ask the user to open the
    official listing and click *Add to Chrome*, then pin the icon from the puzzle menu:
    `https://chromewebstore.google.com/detail/cursorful/eihpmapodnppeemkhkbhikmggfojdkjd`
    Tell them what it asks for: reading all sites and capturing the screen. Only that exact ID;
    look-alike extensions exist. Wait for "done", then run `setup_check.py` again.
-2. **Start.** Click the Cursorful toolbar icon, start a recording, and in Chrome's picker choose
-   the *entire screen* that shows the browser, then *Share*. Do this with `desktop.py`, reading
-   the real button names from a Snapshot, because labels change between versions. If two tries
-   fail, ask the user to click it. Then click *Hide* on Chrome's "is sharing your screen" bar.
-3. **Drive the take** (step 5). Cursorful starts a zoom only on **two clicks within three seconds**
+2. **Collect every coordinate first.** Whatever you look up after the recording starts becomes
+   dead footage. Chrome's own toolbar and its share dialog are not in the Snapshot tree: find them
+   on a frame (`record.py frame`, then `review.py grid`). The Cursorful icon is a green square
+   with a white pointer.
+3. **Open the recorder.** Click the Cursorful toolbar icon. A pinned tab named *Cursorful - Start
+   recording* opens with three steps:
+   - **01 Share this screen.** Open the microphone card and choose *Disable microphone*, so the
+     room is not recorded (the camera card greys out with it). Click *Select screen*. In Chrome's
+     *Share your entire screen* dialog click the *Entire screen* thumbnail, then *Share*. Leave
+     *Also share system audio* off.
+   - **02 Hide screen sharing bar.** Click *Hide* on the bar at the bottom of the screen.
+   - **03 Start recording.** Scroll down and click *Start recording*. Chrome jumps back to the
+     app's tab and recording starts at once.
+4. **Drive the take** (step 5). Cursorful starts a zoom only on **two clicks within three seconds**
    inside the page, and keeps following while clicks continue. At each moment that deserves a
    zoom, make two clicks close together in time and place, for example the field and then its
    button. Clicks more than three seconds apart get no zoom.
-4. **Pause** during long waits with `["Shortcut", {"shortcut": "ctrl+shift+9"}]`, and again to resume.
-5. **Stop** with Cursorful's stop control. Its editor opens in a tab.
-6. **Export** in the editor: check the zooms, hide the browser frame, keep 16:9, export **MP4**.
-   The render is local. Do not use the share link.
-7. **Collect.** The export is the newest `.mp4` in the user's Downloads folder. Move it to
+5. **Pause** during long waits with `["Shortcut", {"shortcut": "ctrl+shift+9"}]`, and again to resume.
+6. **Stop** by clicking the Cursorful toolbar icon again. The editor opens in a tab named
+   *Editor | Cursorful*, with one timeline segment per zoom.
+7. **Export.** Click *Export video* (top right), keep *Local* and 1080p.
+   **If the panel shows "I confirm that this video is for non-commercial use", stop. That checkbox
+   is a legal declaration and only the user may tick it.** Ask them to tick it if it is true and
+   press *Export video* themselves, or to activate their Pro licence. Never choose *Link* or
+   *Upload to cloud*: both send the video to Cursorful's servers.
+8. **Collect.** Find the exported `.mp4` (look in the user's Downloads folder first), move it to
    `rec/cursorful.mp4` and confirm it with `ffprobe`.
 
-The zooms are now part of the picture, so the shot list in step 7 uses no `target` or `zoom`.
+Cursorful shows the app inside a clean window frame on a background and leaves out the real tab
+strip. The zooms are part of the picture, so the shot list in step 7 uses no `target` or `zoom`.
 
 ## 4B. Record with record.py
 
