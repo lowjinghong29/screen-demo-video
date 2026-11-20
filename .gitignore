@@ -1,0 +1,27 @@
+# Recordings and renders can show anything that was on screen. They never belong in git.
+*.mp4
+*.mov
+*.mkv
+*.webm
+*.gif
+*.wav
+*.mp3
+*.m4a
+*.png
+*.jpg
+*.jpeg
+*.log
+rec/
+cut/
+vo/
+
+# local environments and caches
+.venv/
+__pycache__/
+*.pyc
+*.part
+
+# machine-local settings and secrets
+config.json
+.env
+*.crx
