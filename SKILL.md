@@ -1,6 +1,6 @@
 ---
 name: screen-demo-video
-description: Make a narrated product demo video of any app the user can open on a Windows screen. Claude plans the story, records the real screen (Cursorful for web apps, ffmpeg for desktop apps and native dialogs), drives the app with a real gliding mouse, then cuts the take into a video with zoom-on-action, captions, a measured open-source voice-over and a music bed, and reviews every shot. Use whenever the user wants a demo, walkthrough, tutorial, promo or "show how it works" video of software, asks to record their screen or app, or pastes this repository and names an application. Also use when an earlier attempt looked blurry, static, silent, or had no visible mouse. Not for motion graphics drawn in code or AI-generated footage.
+description: Make a narrated product demo video of any app the user can open on a Windows screen (web app, SaaS, website, desktop program, developer tool, internal tool). Claude plans the story, records the real screen (Cursorful for web apps, ffmpeg for desktop apps and native dialogs), drives the app with a real gliding mouse, then cuts the take into a video with zoom-on-action, captions, a measured open-source voice-over and a music bed, and reviews every shot. Use whenever the user wants a demo, walkthrough, tutorial, promo or "show how it works" video of software, asks to record their screen or app, or pastes this repository and names an application. Also use when an earlier attempt looked blurry, static, silent, or had no visible mouse. Not for motion graphics drawn in code or AI-generated footage.
 ---
 
 # Screen demo video
@@ -8,6 +8,10 @@ description: Make a narrated product demo video of any app the user can open on 
 The user names an app. You plan the story, record the real screen, drive the app, cut the video,
 add voice and music, review it and hand over an MP4. The user only logs in, clicks two consent
 buttons and keeps their hands off while you film.
+
+It works for any software that shows on screen: a web app, a SaaS dashboard, a website, a desktop
+program, a developer tool or terminal, an internal tool, a game menu, a mobile app running in an
+emulator or a browser preview. Nothing here is tied to one kind of product.
 
 Every warning here comes from a real production run. Windows 10 or 11 only.
 
@@ -26,9 +30,9 @@ bash quoting. In PowerShell, write the JSON to a file and pass `@steps.json` ins
    type a password, one-time code, API key or card number: the user signs in themselves.
 4. **Never press a button that moves money or sends, posts, publishes or deletes something real**
    (Pay, Send, Submit, Post, Approve, Delete, Publish) unless the user asked for that exact action
-   in this conversation. Film with a sandbox, a test company or test data, and undo any test record
-   you created.
-5. **Show only what the user may show.** Other people's names, amounts, emails and client lists
+   in this conversation. Film with a sandbox, a demo workspace or test data, and undo any test
+   record you created.
+5. **Show only what the user may show.** Other people's names, messages, emails, figures and customer lists
    are filtered out of view or covered with a `hide` box. Recordings and videos stay on this
    computer: never upload, share or publish one, and never use a "share link" feature, unless the
    user says so.
@@ -89,7 +93,7 @@ the free plan.
 
 - Page zoom at 100% (`Ctrl+0`). A browser at 90% softens every frame.
 - One window, maximised, showing only the app. Close other tabs, or keep them out of frame.
-- Clear the app's own clutter first: old failed rows, counters like `Failed 33`, test leftovers.
+- Clear the app's own clutter first: old error rows, stale counters and badges, test leftovers.
 - If a list shows data that is not the user's to show, film a filtered view. Filtering is a normal
   action and looks natural.
 - If you used a browser automation tool to study the app, detach it. It leaves a "controlled by
@@ -159,14 +163,14 @@ recording without a moving mouse looks fake. `references/desktop-driving.md` has
 
 ```bash
 # where is the thing? prints matching elements with their (x,y)
-python scripts/desktop.py run '[["Snapshot",{}]]' --grep "Upload|Approve"
+python scripts/desktop.py run '[["Snapshot",{}]]' --grep "New task|Save"
 
 # one scene: glide, settle, click, type, scroll
 python scripts/desktop.py glide '[
   ["wait",2.0],
   ["click",1440,986],
   ["wait",3.0],
-  ["type",900,420,"INV-1042",false],
+  ["type",900,420,"Plan the launch",false],
   ["scroll",2000,1250,"down",2],["wait",2.4]
 ]' '[500,125]'
 ```
@@ -179,8 +183,8 @@ The last argument is where the cursor is now, so the first glide starts from the
   a new screen sit 2 s before touching it. Dead air is free, you cut it later. A shot you never
   filmed is not.
 - **Wait on proof, not on a guess.** Use `WaitFor` on text that appears only when the step truly
-  succeeded. On the real run, waiting for "Needs review" matched an old banner and reported success
-  while the upload had failed.
+  succeeded. On the real run, waiting for a status label matched an old banner that already showed
+  it, and reported success while the upload had failed.
 - **Focus the exact window before typing.** Keystrokes go to whatever has focus, and a loose window
   name can match the terminal. Switch by the full title from a Snapshot.
 - Looking at the screen (Snapshot, `record.py frame`) does not show up in the recording. Look as
@@ -206,7 +210,7 @@ Copy `references/shots-example.json` to the project as `shots.json`. One shot pe
 - `in`: the second the action happens, minus about one second of lead-in.
 - `say`: one idea, spoken to "you". If it needs an "and", it is two shots. Tie each line to the
   action on screen at that moment, not to the block in general.
-- `caption`: a short statement ("Every line coded to your chart"), not a label ("Upload screen").
+- `caption`: a short statement ("Everyone sees the same plan"), not a label ("Board screen").
 - `target` and `zoom` (route B): the pixel to centre on. Keep zoom at or below recording width
   divided by output width (2880 / 1920 = 1.5), or the softness comes back.
 - `speed`: 2 for a spinner or a long load. `hide`: solid boxes over private data.

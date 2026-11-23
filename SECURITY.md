@@ -40,8 +40,8 @@ user's say.
 
 ## What to keep in mind
 
-- **A screen recording shows whatever was on screen.** Other tabs, notifications, client names and
-  amounts can all end up in a take. The skill filters, frames and covers them, and reviews every
+- **A screen recording shows whatever was on screen.** Other tabs, notifications, people's names,
+  messages and figures can all end up in a take. The skill filters, frames and covers them, and reviews every
   shot, but watch the video yourself before sharing it.
 - **Use test data.** The skill forbids real payments, posts, sends and deletes unless asked for
   by name, and tells the agent to undo test records. A sandbox account makes that rule easy to keep.

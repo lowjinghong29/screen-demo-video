@@ -4,10 +4,14 @@ A Claude Code skill that makes a narrated product demo video of any app you can 
 screen. You name the app. Claude plans the story, records the real screen, drives the app with a
 real mouse, cuts the video, adds an open-source voice-over and music, and reviews every shot.
 
+It works for any kind of software: web apps and SaaS, websites, dashboards, desktop programs,
+developer tools and terminals, internal tools, AI assistants, and mobile apps shown in an emulator
+or browser preview.
+
 ## Use it
 
-1. Ask the repository owner to add you as a collaborator, and sign in once with `gh auth login`.
-2. In Claude Code, paste this and fill in the blanks:
+1. Open Claude Code on a Windows computer.
+2. Paste this and fill in the blanks:
 
    > Use https://github.com/lowjinghong29/screen-demo-video to make a demo video of **[app or URL]**
    > showing **[what it should show]**.
@@ -18,7 +22,7 @@ real mouse, cuts the video, adds an open-source voice-over and music, and review
 ### If you are Claude and were handed this link
 
 ```bash
-gh repo clone lowjinghong29/screen-demo-video "$HOME/.claude/skills/screen-demo-video"
+git clone https://github.com/lowjinghong29/screen-demo-video "$HOME/.claude/skills/screen-demo-video"
 # already there? update instead:
 git -C "$HOME/.claude/skills/screen-demo-video" pull --ff-only
 ```
@@ -78,7 +82,7 @@ More detail: [SECURITY.md](SECURITY.md).
 |---|---|
 | `setup_check.py` prints `FIX` | Run the command it shows, open a new terminal, check again |
 | "desktop server exited before answering" | The first start downloads and builds the driver. Check the network and run it again |
-| A hash error while installing the voice | Stop. Do not bypass the check. Tell the repository owner |
+| A hash error while installing the voice | Stop. Do not bypass the check. Open an issue on this repository |
 | "the user is using the computer" | Let go of the mouse and keyboard, then ask Claude to continue |
 | The video looks soft | Browser zoom was not 100%, or a shot zooms beyond 1.5 on a 2880 px recording |
 | `review.py final` fails | Read the failed line, fix the shot list, cut again |

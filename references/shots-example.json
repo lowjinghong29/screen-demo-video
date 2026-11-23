@@ -1,7 +1,7 @@
 {
-  "_comment": "Shot list for a native-resolution recording (record.py, 2880x1800). 'target' and 'hide' are pixels in the recording: read them off a grid frame from review.py grid. Zoom stays at or below recording width / output width (2880/1920 = 1.5) so nothing is upscaled. For a Cursorful export the zooms are already in the picture: leave out target and zoom.",
+  "_comment": "Shot list for a native-resolution recording (record.py, 2880x1800) of a made-up team task board. The same shape fits any app: hook, input, action, proof, close. 'target' and 'hide' are pixels in the recording: read them off a grid frame from review.py grid. Zoom stays at or below recording width / output width (2880/1920 = 1.5) so nothing is upscaled. For a Cursorful export the zooms are already in the picture: leave out target and zoom.",
 
-  "out": "invoice-app-demo.mp4",
+  "out": "task-board-demo.mp4",
   "width": 1920,
   "height": 1080,
   "fps": 30,
@@ -19,33 +19,33 @@
   "shots": [
     {
       "src": "main", "in": 61, "min": 5.5,
-      "caption": "Connected to your accounting book",
-      "say": "This is the invoice app, connected to your accounting book.",
+      "caption": "One board for the whole team",
+      "say": "This is the task board your whole team works from.",
       "target": [1260, 760], "zoom": 1.15
     },
     {
       "src": "main", "in": 70,
-      "caption": "Pick the bill",
-      "say": "You pick the bill out of your folder.",
+      "caption": "Add a task in one line",
+      "say": "You type what needs doing, and press Enter.",
       "target": [900, 430], "zoom": 1.25
     },
     {
       "src": "main", "in": 126, "speed": 2,
-      "caption": "It reads every line",
-      "say": "Open it, and the app reads every line for you.",
+      "caption": "It sorts itself",
+      "say": "The board files it under the right project for you.",
       "target": [1250, 980], "zoom": 1.25
     },
     {
       "src": "main", "in": 338, "min": 7.5,
-      "caption": "Every line coded to your chart",
-      "say": "Each line is coded to a real account from your chart, and you can change any of them.",
+      "caption": "Drag it to who owns it",
+      "say": "Drag the card to a teammate, and they are told straight away.",
       "target": [1750, 1120], "zoom": 1.22,
       "hide": [[40, 300, 420, 900]]
     },
     {
       "src": "result", "in": 13,
-      "caption": "In your book, as a draft",
-      "say": "And there it is in your book, sitting as a draft for you to approve.",
+      "caption": "Everyone sees the same plan",
+      "say": "Now everyone sees the same plan, on any device.",
       "target": [1500, 1180], "zoom": 1.28
     }
   ]

@@ -9,16 +9,30 @@ Aim for 45 to 90 seconds and 6 to 10 shots.
 1. **Hook.** One sentence on the starting screen: what this is and who it is for.
 2. **Input.** What the user gives it: the file, the form, the question.
 3. **Action.** The moment the product does its work. Skip the waiting with a new shot or `speed: 2`.
-4. **Proof.** The result where it actually lands, for example the record inside the other system.
-   Plan this shot first. It is the one that got cut off twice on the real run.
+4. **Proof.** The result where it actually lands: the saved record, the shared page, the sent
+   report, the passing build. Plan this shot first. It is the one that got cut off twice on the
+   real run.
 5. **Close.** One line on what that means for the viewer.
 
 One idea per shot. Show the real thing happening, never a description of it.
 
+The same five beats fit any product. Only what counts as input, action and proof changes:
+
+| Kind of app | Input | Action | Proof |
+|---|---|---|---|
+| Productivity or team tool | a new task, note or message | it is organised, assigned or shared | a teammate's view shows it |
+| Dashboard or analytics | a question or a filter | the chart or table answers | the number that matters, in view |
+| E-commerce or booking | a product or a date | add to cart, check out on test data | the confirmation page |
+| Document or data processing | an uploaded file | the app reads or converts it | the result, opened or exported |
+| Developer tool or CLI | a command or a config | it builds, tests or deploys | the green result or the running app |
+| Design or media tool | a blank canvas or an asset | a few strokes or one effect | the finished piece |
+| AI assistant or chatbot | a plain question | the answer arrives | the answer put to use |
+| Onboarding or tutorial | the empty first screen | the first setup steps | the app ready to use |
+
 ## Narration
 
 - **Measure, never count.** Speech length is taken from the real audio by `cut.py`. Word counts
-  lie: an amount such as "14,199.76" is spoken three to four times longer than it looks, and a
+  lie: a figure such as "14,199.76" is spoken three to four times longer than it looks, and a
   script timed by word count overlapped on 35 of 57 lines. Keep long numbers and codes out of
   short shots. Say "about fourteen thousand" and let the caption or the screen carry the digits.
 - **Anchor every line to its event.** The line plays while its click or page change is on screen.
@@ -35,7 +49,7 @@ One idea per shot. Show the real thing happening, never a description of it.
 
 Captions carry the story for people watching without sound.
 
-- A statement, not a label: "Every line coded to your chart", not "Coding screen".
+- A statement, not a label: "Everyone sees the same plan", not "Board screen".
 - Six words or fewer.
 - If a caption covers the number it talks about, move it with `"caption_y"` in `shots.json`
   (distance from the bottom edge, default 140).

@@ -58,7 +58,7 @@ zoom segment on the timeline, so real input from `desktop.py` triggers Cursorful
    recording will start immediately. Stop the recording from this pinned tab or by pressing
    Cursorful's button in the extensions toolbar."
 6. Drive the app with `desktop.py`. Plan the zooms with click pairs. Example: to zoom on an
-   *Approve* button, click the row first and the button within three seconds.
+   *Save* button, click the field first and the button within three seconds.
 7. Click the toolbar icon again to stop. The editor opens in a tab titled *Editor | Cursorful*.
    The preview shows the app inside a clean window frame on a background image; the real tab
    strip and any browser banner are not shown.
